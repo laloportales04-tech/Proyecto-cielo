@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Proyecto CIELO.exe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Nunito',sans-serif;
+background:#050816;
+color:white;
+overflow:hidden;
+height:100vh;
+}
+
+#stars{
+position:fixed;
+inset:0;
+overflow:hidden;
+z-index:-1;
+}
+
+.star{
+position:absolute;
+background:white;
+border-radius:50%;
+animation:twinkle 3s infinite;
+}
+
+@keyframes twinkle{
+0%,100%{opacity:.2}
+50%{opacity:1}
+}
+
+.screen{
+display:none;
+height:100vh;
+padding:30px;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+}
+
+.active{
+display:flex;
+}
+
+.terminal{
+font-family:'Fira Code',monospace;
+background:rgba(0,0,0,.4);
+padding:25px;
+border-radius:20px;
+max-width:700px;
+backdrop-filter:blur(10px);
+}
+
+h1{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+p{
+margin:10px 0;
+line-height:1.7;
+}
+
+.btn{
+padding:15px 30px;
+border:none;
+border-radius:15px;
+cursor:pointer;
+font-size:1rem;
+font-weight:bold;
+margin:10px;
+transition:.3s;
+}
+
+.yes{
+background:#7c3aed;
+color:white;
+}
+
+.yes:hover{
+transform:scale(1.08);
+}
+
+.no{
+background:#ec4899;
+color:white;
+position:relative;
+}
+
+.cat{
+width:250px;
+height:250px;
+object-fit:cover;
+border-radius:20px;
+margin:20px;
+box-shadow:0 0 25px rgba(255,255,255,.2);
+}
+
+.hidden{
+display:none;
+}
+
+.final{
+font-size:1.5rem;
+max-width:700px;
+}
+
+.heart{
+position:fixed;
+font-size:30px;
+animation:fall linear forwards;
+pointer-events:none;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+}
+
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<!-- INTRO -->
+
+<section id="intro" class="screen active">
+
+<div class="terminal">
+
+<h1>🌌 Proyecto CIELO.exe</h1>
+
+<p>> Ejecutando protocolo...</p>
+<p>> Analizando universo...</p>
+<p>> Buscando coincidencias...</p>
+
+<br>
+
+<button class="btn yes" onclick="nextScreen('scan')">
+Continuar
+</button>
+
+</div>
+
+</section>
+
+<!-- SCAN -->
+
+<section id="scan" class="screen">
+
+<div class="terminal">
+
+<p>✔️ 8.000 millones de personas analizadas</p>
+<p>✔️ Compatibilidad encontrada</p>
+<p>✔️ Nombre detectado:</p>
+
+<h1 style="color:#ec4899;">CIELO ❤️</h1>
+
+<button class="btn yes" onclick="loadCat()">
+Seguir
+</button>
+
+</div>
+
+</section>
+
+<!-- CAT -->
+
+<section id="catScreen" class="screen">
+
+<img id="catImg" class="cat">
+
+<div class="terminal">
+
+<h2>🐱 Mensaje del Gatito Guardián</h2>
+
+<p>
+Hola humana.
+</p>
+
+<p>
+He sido contratado para verificar si eres tan increíble
+como dicen.
+</p>
+
+<button class="btn yes" onclick="nextScreen('reveal')">
+Continuar misión
+</button>
+
+</div>
+
+</section>
+
+<!-- REVEAL -->
+
+<section id="reveal" class="screen">
+
+<div class="terminal">
+
+<p>> Procesando resultados...</p>
+
+<br>
+
+<p>
+Error inesperado.
+</p>
+
+<p>
+La misión real nunca fue recopilar datos.
+</p>
+
+<p>
+La misión era reunir suficiente valor para hacer una pregunta...
+</p>
+
+<br>
+
+<button class="btn yes" onclick="nextScreen('letter')">
+Descubrir
+</button>
+
+</div>
+
+</section>
+
+<!-- LETTER -->
+
+<section id="letter" class="screen">
+
+<div class="terminal final">
+
+<h1>💌 Para Cielo</h1>
+
+<p>
+Hola Cielo ❤️
+</p>
+
+<p>
+Podría haberte enviado simplemente un mensaje.
+</p>
+
+<p>
+Pero quería hacer algo diferente.
+</p>
+
+<p>
+Algo que te sacara una sonrisa.
+</p>
+
+<p>
+Algo que recordaras.
+</p>
+
+<p>
+Porque cuando pienso en compartir tiempo contigo,
+siento que merece más esfuerzo que un simple "hola".
+</p>
+
+<p>
+Y por eso construí esta pequeña experiencia.
+</p>
+
+<p>
+Para preguntarte algo que llevo tiempo queriendo decir...
+</p>
+
+<h2 style="margin-top:20px;">
+¿Te gustaría salir conmigo? ❤️
+</h2>
+
+<br>
+
+<button id="yesBtn" class="btn yes" onclick="celebrate()">
+Sí ❤️
+</button>
+
+<button id="noBtn" class="btn no">
+No 🙈
+</button>
+
+</div>
+
+</section>
+
+<!-- FINAL -->
+
+<section id="final" class="screen">
+
+<div class="terminal">
+
+<h1>🎉 MISIÓN COMPLETADA 🎉</h1>
+
+<h2>Estado: Extremadamente feliz ❤️</h2>
+
+<br>
+
+<p>
+Resultado:
+</p>
+
+<h1>¡Es una cita! 🐱💜</h1>
+
+</div>
+
+</section>
+
+<script>
+
+// estrellas
+
+for(let i=0;i<150;i++){
+
+let s=document.createElement("div");
+
+s.className="star";
+
+s.style.width=Math.random()*3+"px";
+s.style.height=s.style.width;
+
+s.style.left=Math.random()*100+"%";
+s.style.top=Math.random()*100+"%";
+
+s.style.animationDuration=
+(Math.random()*3+2)+"s";
+
+document.getElementById("stars").appendChild(s);
+
+}
+
+// navegación
+
+function nextScreen(id){
+
+document.querySelectorAll(".screen")
+.forEach(s=>s.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+}
+
+// gatito internet
+
+async function loadCat(){
+
+nextScreen("catScreen");
+
+try{
+
+const res=await fetch(
+"https://api.thecatapi.com/v1/images/search"
+);
+
+const data=await res.json();
+
+document.getElementById("catImg").src =
+data[0].url;
+
+}catch{
+
+document.getElementById("catImg").src =
+"https://cataas.com/cat";
+}
+
+}
+
+// botón escapista
+
+let escapes=0;
+
+const noBtn=document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",()=>{
+
+escapes++;
+
+const x=Math.random()*400-200;
+const y=Math.random()*300-150;
+
+noBtn.style.transform=
+translate(${x}px,${y}px) scale(${1-(escapes*0.08)});
+
+const yes=document.getElementById("yesBtn");
+
+yes.style.transform=
+scale(${1+(escapes*0.1)});
+
+if(escapes>=6){
+
+noBtn.style.display="none";
+
+}
+
+});
+
+// celebración
+
+function celebrate(){
+
+nextScreen("final");
+
+for(let i=0;i<120;i++){
+
+setTimeout(()=>{
+
+const h=document.createElement("div");
+
+const items=["❤️","🐱","✨","🌸"];
+
+h.innerHTML=
+items[Math.floor(Math.random()*items.length)];
+
+h.className="heart";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.top="-50px";
+
+h.style.animationDuration=
+(Math.random()*3+2)+"s";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+h.remove();
+},6000);
+
+},i*80);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
